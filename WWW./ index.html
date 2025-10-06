@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>MarsGame</title>
+    <style>
+        /* إعدادات بسيطة للشاشة */
+        body { margin: 0; padding: 0; background-color: #000; overflow: hidden; font-family: sans-serif; }
+        #gameArea { 
+            width: 100vw; 
+            height: 100vh; 
+            background-image: url('assets/images/mars_bg.jpg'); /* خلفية المريخ */
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 5vh;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        .sprite {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameArea">
+        <h1>Mars Mission Ready</h1>
+        <img class="sprite" src="assets/images/spaceship.png" alt="Spaceship">
+        <img class="sprite" src="assets/images/robot.png" alt="Robot">
+
+        <audio id="alarmSound" src="assets/audio/alarm.wav" preload="auto"></audio>
+        <audio id="bgMusic" src="assets/audio/bg_music.mp3" loop preload="auto"></audio>
+
+        <button id="startButton" style="padding: 15px; font-size: 4vh; cursor: pointer;">START GAME (Play Sound)</button>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript">
+        // كود تشغيل الأصوات عند ضغط الزر
+        document.addEventListener('deviceready', function() {
+            console.log('Cordova is ready!');
+            
+            document.getElementById('startButton').addEventListener('click', function() {
+                // تشغيل الموسيقى والإنذار عند النقر على زر البدء
+                document.getElementById('bgMusic').play().catch(e => console.log("Music play error:", e));
+                document.getElementById('alarmSound').play().catch(e => console.log("Alarm play error:", e));
+                alert("Sounds Playing! Now build the APK!");
+            });
+        }, false);
+    </script>
+</body>
+</html>
